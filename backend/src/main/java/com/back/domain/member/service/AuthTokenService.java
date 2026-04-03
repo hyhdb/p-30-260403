@@ -13,7 +13,7 @@ class AuthTokenService {
     @Value("${custom.jwt.secretPattern}")
     private String secretKey;
     @Value("${custom.jwt.expiration}")
-    private long expireTime; // 1년
+    private long expireTime;
 
     String genAccessToken(Member member) {
         return Ut.jwt.toString(
@@ -21,7 +21,8 @@ class AuthTokenService {
                 expireTime,
                 Map.of(
                         "id", member.getId(),
-                        "username", member.getUsername()
+                        "username", member.getUsername(),
+                        "nickname", member.getNickname()
                 )
         );
     }

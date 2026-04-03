@@ -54,7 +54,7 @@ public class SecurityConfig {
                                                     """);
                                 })
                                 .accessDeniedHandler((request, response, accessDeniedException) -> {
-                                    response.setContentType("application/json; charset=UTF-8");
+                                            response.setContentType("application/json; charset=UTF-8");
                                             response.setStatus(403);
                                             response.getWriter().write(
                                                     """
