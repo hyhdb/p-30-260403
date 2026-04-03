@@ -22,12 +22,13 @@ public class Rq {
     private final HttpServletResponse response;
     private final MemberService memberService;
 
+    // 인증된 사용자 정보 확보
     public Member getActor() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
 
-        return new Member(securityUser.getId(), securityUser.getUsername(),securityUser.getNickname());
+        return new Member(securityUser.getId(), securityUser.getUsername(), securityUser.getNickname());
     }
 
     public void setHeader(String name, String value) {
@@ -71,8 +72,8 @@ public class Rq {
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setDomain("localhost");
-        cookie.setSecure(true);
-        cookie.setAttribute("SameSite", "Strict");
+        cookie.setSecure(true); // http X https O
+        cookie.setAttribute("SameSite", "strict");
 
         response.addCookie(
                 cookie
